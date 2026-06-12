@@ -1,3 +1,4 @@
+cat > tests/0-add_integer.txt << 'EOF'
 The ``0-add_integer`` module
 ============================
 
@@ -32,6 +33,11 @@ Add two negative numbers:
     >>> add_integer(-5, -5)
     -10
 
+Add zero values:
+
+    >>> add_integer(0, 0)
+    0
+
 Raise an error when a is not an integer:
 
     >>> add_integer(None)
@@ -53,7 +59,17 @@ Raise an error when a is a string:
     ...
     TypeError: a must be an integer
 
-Add zero values:
+Test float infinity:
 
-    >>> add_integer(0, 0)
-    0
+    >>> add_integer(float("inf"), 1)
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+Test float NaN:
+
+    >>> add_integer(float("nan"), 1)
+    Traceback (most recent call last):
+    ...
+    ValueError: cannot convert float NaN to integer
+EOF
