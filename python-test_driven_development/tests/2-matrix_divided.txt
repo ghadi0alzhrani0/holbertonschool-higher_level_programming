@@ -61,3 +61,42 @@ Original matrix is not changed:
     >>> new_matrix = matrix_divided(matrix, 2)
     >>> matrix
     [[1, 2], [3, 4]]
+
+Division by infinity:
+
+    >>> matrix_divided([[1, 2], [3, 4]], float("inf"))
+    [[0.0, 0.0], [0.0, 0.0]]
+
+Matrix contains infinity:
+
+    >>> matrix_divided([[float("inf"), 2], [3, 4]], 2)
+    [[inf, 1.0], [1.5, 2.0]]
+
+Matrix contains NaN:
+
+    >>> matrix_divided([[float("nan"), 2], [3, 4]], 2)
+    [[nan, 1.0], [1.5, 2.0]]
+
+Matrix contains infinity and div is infinity:
+
+    >>> matrix_divided([[float("inf"), 2], [3, 4]], float("inf"))
+    [[nan, 0.0], [0.0, 0.0]]
+
+Div is NaN:
+
+    >>> matrix_divided([[1, 2], [3, 4]], float("nan"))
+    [[nan, nan], [nan, nan]]
+
+Missing div argument:
+
+    >>> matrix_divided([[1, 2], [3, 4]])
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+Missing both arguments:
+
+    >>> matrix_divided()
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
