@@ -1,75 +1,83 @@
-cat > tests/0-add_integer.txt << 'EOF'
 The ``0-add_integer`` module
 ============================
 
-This file tests the add_integer function.
-
-Import the function:
+Import function:
 
     >>> add_integer = __import__('0-add_integer').add_integer
 
-Add two integers:
+Regular addition:
 
     >>> add_integer(1, 2)
     3
 
-Add positive and negative integers:
+Addition with negative number:
 
     >>> add_integer(100, -2)
     98
 
-Use the default value of b:
+Default value:
 
     >>> add_integer(2)
     100
 
-Add floats after casting to integers:
+Float casting:
 
     >>> add_integer(100.3, -2)
     98
 
-Add two negative numbers:
+Another float casting:
 
-    >>> add_integer(-5, -5)
-    -10
+    >>> add_integer(1.4, 2)
+    3
 
-Add zero values:
+Zero addition:
 
     >>> add_integer(0, 0)
     0
 
-Raise an error when a is not an integer:
+Negative numbers:
+
+    >>> add_integer(-5, -5)
+    -10
+
+Wrong type for a:
 
     >>> add_integer(None)
     Traceback (most recent call last):
     ...
     TypeError: a must be an integer
 
-Raise an error when b is not an integer:
+Wrong type for b:
 
     >>> add_integer(4, "School")
     Traceback (most recent call last):
     ...
     TypeError: b must be an integer
 
-Raise an error when a is a string:
+Wrong type for a string:
 
     >>> add_integer("School", 4)
     Traceback (most recent call last):
     ...
     TypeError: a must be an integer
 
-Test float infinity:
+Float infinity:
 
     >>> add_integer(float("inf"), 1)
     Traceback (most recent call last):
     ...
     OverflowError: cannot convert float infinity to integer
 
-Test float NaN:
+Float NaN:
 
     >>> add_integer(float("nan"), 1)
     Traceback (most recent call last):
     ...
     ValueError: cannot convert float NaN to integer
-EOF
+
+Missing required argument:
+
+    >>> add_integer()
+    Traceback (most recent call last):
+    ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
