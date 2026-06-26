@@ -1,49 +1,56 @@
-Test BaseGeometry integer validator.
+Test BaseGeometry.
 
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-Valid integers should not print anything.
-
 >>> bg.integer_validator("my_int", 12)
 >>> bg.integer_validator("width", 89)
+>>> bg.integer_validator("age", 1)
 
-String value should raise TypeError.
-
->>> bg.integer_validator("name", "John")
+>>> bg.integer_validator("age")
 Traceback (most recent call last):
 ...
-TypeError: name must be an integer
-
-Zero should raise ValueError.
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
 
 >>> bg.integer_validator("age", 0)
 Traceback (most recent call last):
 ...
 ValueError: age must be greater than 0
 
-Negative value should raise ValueError.
-
->>> bg.integer_validator("distance", -4)
+>>> bg.integer_validator("age", -4)
 Traceback (most recent call last):
 ...
-ValueError: distance must be greater than 0
+ValueError: age must be greater than 0
 
-Float value should raise TypeError.
-
->>> bg.integer_validator("price", 3.5)
+>>> bg.integer_validator("age", "4")
 Traceback (most recent call last):
 ...
-TypeError: price must be an integer
+TypeError: age must be an integer
 
-Boolean value should raise TypeError.
-
->>> bg.integer_validator("active", True)
+>>> bg.integer_validator("age", (4,))
 Traceback (most recent call last):
 ...
-TypeError: active must be an integer
+TypeError: age must be an integer
 
-Area method should raise an exception.
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
 
 >>> bg.area()
 Traceback (most recent call last):
