@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module defines a function that checks inherited class relation."""
+"""This module defines a function that checks subclass inheritance."""
 
 
 def inherits_from(obj, a_class):
